@@ -15,12 +15,12 @@
 	</tr>
 	<% @members.each do |member| %>
 	<tr>
-		<td align="right"<%=member.number%></td>
+		<td align="right"><%=member.number%></td>
 		<td><%=link_to member.name,member%></td>
 		<td><%=member.full_name%></td>
 		<td>
 			<%=link_to"編集",[:edit,member]%>|
-			<%=link_to"削除",member,method: :delete,
+			<%=link_to"削除", member, method: :delete,
 				confirm:"本当に削除しますか?" %>
 		</td>
 	</tr>
