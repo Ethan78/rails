@@ -19,9 +19,10 @@
 		<td><%=link_to member.name,member%></td>
 		<td><%=member.full_name%></td>
 		<td>
-			<%=link_to"編集",[:edit,member]%>|
-			<%=link_to"削除", member, method: :delete,
-				confirm:"本当に削除しますか?" %>
+			<%=link_to"編集",[:edit,member]%> |
+			<%=button_to"削除", member, {:onclick => 
+				"return confirm('本当に削除しますか?')",
+				:method => :delete}%>
 		</td>
 	</tr>
 	<%end%>
