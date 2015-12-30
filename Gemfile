@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby "1.9.3"
 gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
@@ -36,3 +36,11 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'minitest','~> 4'
+group :test do
+	gem 'turn','~> 0.8.3', :require => false
+end
+
+group :test do
+	gem 'factory_girl_rails','~>1.4.0'
+end
