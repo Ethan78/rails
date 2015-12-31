@@ -37,4 +37,15 @@
 		<td><%= form.check_box :administrator %>
 		<%= form.label :administrator, "管理者" %></td>
 	</tr>
+	<tr>
+		<th><%= form.label :password %></th>
+		<td><%= form.password_field :password %></td>
+	</tr>
+	<tr>
+		<th><%= form.label :password_confirmation %></th>
+		<td><%= form.password_field :password_confirmation %></td>
+	</tr>
+	<% unless @member.new_record? %>
+		<p>パスワードを変更しない時は、パスワード入力を空にしてください</p>
+	<% end %>
 </table>

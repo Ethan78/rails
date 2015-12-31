@@ -14,7 +14,12 @@ class Member < ActiveRecord::Base
 
 	validates :full_name,length: { maximum: 20 }
 
+	validates :password, presence: {on: :create},
+		confirmation: {allow_blank: true}
+
 	validate :check_email
+
+	attr_accessor :password, :password_confirmation
 
 	def change
 		create table :members do |t|
@@ -22,6 +27,14 @@ class Member < ActiveRecord::Base
 			t.timestamps
 		end
 	end
+
+	def password=(val)
+		if val.present?
+			self.hashed_password = BCrypt::Password.create(val)
+		end
+		@password = val
+	end
+
 	class << self
 		def search(query)
 			rel=order("number")
@@ -30,6 +43,16 @@ class Member < ActiveRecord::Base
 					"%#{query}%","%#{query}%")
 			end
 			rel
+		end
+
+		def authenticate(name, password)
+			member = find_by_name(name)
+			if member && member.hashed_password.present? &&
+				BCrypt::Password.new(member.hashed_password) == password
+					member
+			else
+				nil
+			end
 		end
 	end
 
