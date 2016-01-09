@@ -5,7 +5,7 @@ Asagao::Application.routes.draw do
 	resources :members do
 		collection{get "search"}
 	end
-	resources :articles
+	resources :articles,only: [:index,:show]
 	resource :session, only: [:create, :destroy]
 
 	namespace :admin do
