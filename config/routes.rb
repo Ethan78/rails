@@ -7,6 +7,7 @@ Asagao::Application.routes.draw do
 	end
 	resources :articles,only: [:index,:show]
 	resource :session, only: [:create, :destroy]
+	resource :account, only: [:show, :edit, :update]
 
 	namespace :admin do
 		root to: "top#index"

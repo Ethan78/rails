@@ -1,9 +1,11 @@
 <%= render "shared/errors",obj: @member %>
 <table class="attr">
-	<tr>
-		<th><%= form.label :number %></th>
-		<td><%= form.text_field :number, size: 8 %></td>
-	</tr>
+	<% if controller.kind_of?(Admin::MembersController)%>
+		<tr>
+			<th><%= form.label :number %></th>
+			<td><%= form.text_field :number, size: 8 %></td>
+		</tr>
+	<% end %>
 	<tr>
 		<th><%= form.label :name %></th>
 		<td><%= form.text_field :name %></td>
@@ -32,11 +34,13 @@
 		<th><%= form.label :email %></th>
 		<td><%= form.text_field :email %></td>
 	</tr>
-	<tr>
-		<th><%= Member.human_attribute_name(:administrator) %></th>
-		<td><%= form.check_box :administrator %>
-		<%= form.label :administrator, "管理者" %></td>
-	</tr>
+	<% if controller.kind_of?(Admin::MembersController)%>
+		<tr>
+			<th><%= Member.human_attribute_name(:administrator) %></th>
+			<td><%= form.check_box :administrator %>
+			<%= form.label :administrator, "管理者" %></td>
+		</tr>
+	<% end %>
 	<tr>
 		<th><%= form.label :password %></th>
 		<td><%= form.password_field :password %></td>
