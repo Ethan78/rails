@@ -24,7 +24,7 @@ class Admin::ArticlesController < Admin::Base
 
 	#新規作成
 	def create
-		@article = Article.new(params[:article])
+		@article = Article.new(params[:article], as: :admin)
 		if @article.save
 			redirect_to [:admin, @article], notice: "ニュース記事を登録しました"
 		else
@@ -35,7 +35,7 @@ class Admin::ArticlesController < Admin::Base
 	#更新
 	def update
 		@article = Article.find(params[:id])
-		@article.assign_attributes(params[:article])
+		@article.assign_attributes(params[:article], as: :admin)
 		if @article.save
 			redirect_to [:admin, @article], notice: "ニュース記事を更新しました"
 		else

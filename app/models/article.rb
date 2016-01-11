@@ -1,4 +1,8 @@
 class Article < ActiveRecord::Base
+
+	attr_accessible :title, :body, :released_at, :expired_at,
+		:no_expiration, :member_only, as: :admin
+
 	validates :title, :body, :released_at, presence: true
 	validates :title, length: { maximum: 200 }
 	validate :check_expired_at

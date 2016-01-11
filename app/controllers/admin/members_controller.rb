@@ -19,7 +19,7 @@ class Admin::MembersController < Admin::Base
 	end
 
 	def create
-		@member = Member.new(params[:member])
+		@member = Member.new(params[:member], as: :admin)
 		if @member.save
 			redirect_to [:admin, @member], notice: "会員を登録しました"
 		else
@@ -29,7 +29,7 @@ class Admin::MembersController < Admin::Base
 
 	def update
 		@member = Member.find(params[:id])
-		@member.assign_attributes(params[:member])
+		@member.assign_attributes(params[:member], as: :admin)
 		if @member.save
 			redirect_to [:admin, @member], notice: "会員情報を変更しました"
 		else
